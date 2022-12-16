@@ -1,0 +1,51 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+
+#!markdown
+
+# Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [What is PowerShell?](#what-is-powershell)
+    - [What is .NET?](#what-is-net)
+    - [First PowerShell Script](#first-powershell-script)
+- [Syntax](#syntax)
+
+#!markdown
+
+# What is PowerShell?
+
+`PowerShell` is a task automation and configuration management framework from Microsoft, consisting of a command-line shell and associated scripting language built on the `.NET Framework`. PowerShell is intended to be a cross-platform (Windows, Linux, and macOS) shell and scripting language. PowerShell is built on the .NET Framework, allowing you to leverage .NET as well as PowerShell to automate tasks on any platform where .NET Core or PowerShell is available.
+
+#!markdown
+
+## What is .NET?
+
+`.NET` is a free, cross-platform, open source developer platform for building many different types of applications. With .NET, you can use multiple languages, editors, and libraries to build for web, mobile, desktop, games, and IoT. .NET is composed of two parts: the `.NET Framework` and the `.NET Core`. The .NET Framework is a Windows-only implementation of .NET. The .NET Core is a cross-platform implementation of .NET that runs on Windows, macOS, and Linux. .NET consists of the following components:
+
+- .NET Language - Programming language like C#, F#, and Visual Basic to write source code
+- .NET Compiler - Roslyn to compile source code into Intermediate Language (IL)
+- .NET Assembly - IL files are compiled into assemblies (DLLs or EXEs) that can be executed
+- .NET Runtime - Common Language Runtime (CLR) is used to execute assemblies
+- .NET Class Library - a collection of classes and methods that can be used to build applications
+- .NET Framework - a collection of assemblies that are used to build applications
+
+#!markdown
+
+## First PowerShell Script
+
+Write your first `PowerShell` script! It outputs a string to the console.
+
+> Hover your mouse over the following code. On the left side, a little `play` icon should show up. Click that and the code will run!
+
+#!pwsh
+
+$my_str = "Hello world"
+Write-Host $my_str
+
+#!markdown
+
+# Syntax
+
+- `PowerShell` is case-insensitive
