@@ -10,7 +10,11 @@
 - [What is PowerShell?](#what-is-powershell)
     - [What is .NET?](#what-is-net)
     - [First PowerShell Script](#first-powershell-script)
-- [Syntax](#syntax)
+- [First PowerShell Script](#first-powershell-script)
+    - [Syntax](#syntax)
+- [Get Help](#get-help)
+    - [Interpreting The Help](#interpreting-the-help)
+    - [Common Parameters](#common-parameters)
 
 #!markdown
 
@@ -22,7 +26,7 @@
 
 ## What is .NET?
 
-`.NET` is a free, cross-platform, open source developer platform for building many different types of applications. With .NET, you can use multiple languages, editors, and libraries to build for web, mobile, desktop, games, and IoT. .NET is composed of two parts: the `.NET Framework` and the `.NET Core`. The .NET Framework is a Windows-only implementation of .NET. The .NET Core is a cross-platform implementation of .NET that runs on Windows, macOS, and Linux. .NET consists of the following components:
+`.NET` is a free, cross-platform, open source developer platform for building many different types of applications. With .NET, you can use multiple languages, editors, and libraries to build for web, mobile, desktop, games, and IoT. .NET is composed of two parts: `.NET Framework` and `.NET Core`. The .NET Framework is a Windows-only implementation of .NET. The .NET Core is a cross-platform implementation of .NET that runs on Windows, macOS, and Linux. .NET consists of the following components:
 
 - .NET Language - Programming language like C#, F#, and Visual Basic to write source code
 - .NET Compiler - Roslyn to compile source code into Intermediate Language (IL)
@@ -43,9 +47,87 @@ Write your first `PowerShell` script! It outputs a string to the console.
 
 $my_str = "Hello world"
 Write-Host $my_str
+# Write-Host is not needed, but it's a good practice to use it
 
 #!markdown
 
-# Syntax
+NOTE: If above doesn't work then make sure you have `.Net 7` and `PowerShell 7` installed on your machine.
 
-- `PowerShell` is case-insensitive
+You can run `dotnet --list-sdks` and `$PSVersionTable` in your terminal to check if you have the correct versions installed.
+
+#!markdown
+
+## Syntax
+
+- `PowerShell` is case-insensitive and follow similar syntax to C#
+- PowerShell does not care if you use `/` or `\` as the directory separator
+- Use a backtick(`` ` ``) to continue a command on the next line
+- Use a semicolon(`;`) to separate commands on the same line
+- To declare a comment, use a number sign(`#`)
+- To be continued...
+
+#!markdown
+
+# Get Help
+
+PowerShell has a fantastic help system. You can get help on any command by using the `Get-Help` command. For example, to get help on the `Write-Host` command, you can run the following command:
+
+#!pwsh
+
+Get-Help Write-Host
+
+#!markdown
+
+You can also use wild cards(`*`) and the alias `help` or `man` as a substitute for `Get-Help`. 
+
+Add the parameter:
++ `-Full` to get the full help guide
++ `-Examples` to get examples of how to use the command
++ `-Online` to get the online help guide which are more up to date
+
+Examples:
+
+#!pwsh
+
+help *write*
+#man Write-Host -Full
+#Get-Help Write-Host -Examples
+#get-help write-host -online
+
+#!markdown
+
+> Update `Get-Help` by running `Update-Help`
+
+#!markdown
+
+## Interpreting The Help
+
+What use is the help system if you do not know how to read it properly. Let's learn how to understand what you're looking at. Run the code below and take a look at the *syntax* row.
+
+#!pwsh
+
+get-help get-item
+
+#!markdown
+
+Notice in the **syntax** row that it is listed twice - which means that the command supports two parameter sets. Depending on what parameters are passed in then the command will act differently. At least one unique parameter exists in the parameter set.
+
+You do not need to use every single parameter in order to make the command to run. Optional parameters are in square brackets `[]` while mandatory parameters are not. Notice that the parameter set also indicates what kind of input each accept like `System.String` and `Int`.
+
+#!markdown
+
+## Common Parameters
+
+All PowerShell commands have a set of common parameters that you can use to customize the behavior of the command. Access the parameters by running `Help *common*`:
+
+- Verbose
+- Debug
+- WarningAction
+- WarningVariable
+- ErrorAction
+- ErrorVariable
+- OutVariable
+- OutBuffer
+- InformationAction
+- InformationVariable
+- PipelineVariable

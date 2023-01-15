@@ -11,6 +11,10 @@ Most of the things covered here are from [Learn PowerShell in a Month of Lunches
 - [Polyglot Notebook](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-interactive-vscode)
 - [.NET 7 SDK](https://dotnet.microsoft.com/download/dotnet/7.0)
 
+### Optional
+
+- [Windows Terminal](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&gl=us)
+
 ## Getting Started
 
 Clone this repo and open the folder in Visual Studio Code. Open the `.dib` file to get started.
