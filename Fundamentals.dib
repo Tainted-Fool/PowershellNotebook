@@ -14,6 +14,7 @@
     - [Syntax](#syntax)
 - [Get Help](#get-help)
     - [Interpreting The Help](#interpreting-the-help)
+- [Commands](#commands)
     - [Common Parameters](#common-parameters)
 
 #!markdown
@@ -96,7 +97,7 @@ help *write*
 
 #!markdown
 
-> Update `Get-Help` by running `Update-Help`
+> NOTE: Update `Get-Help` by running `Update-Help`
 
 #!markdown
 
@@ -107,12 +108,38 @@ What use is the help system if you do not know how to read it properly. Let's le
 #!pwsh
 
 get-help get-item
+#get-help gci # alternative using an alias
 
 #!markdown
 
-Notice in the **syntax** row that it is listed twice - which means that the command supports two parameter sets. Depending on what parameters are passed in then the command will act differently. At least one unique parameter exists in the parameter set.
+Notice in the **syntax** row that it is listed twice, which means that the command supports two parameter sets. Depending on what parameters are passed in then the command will act differently. At least one unique parameter exists in each parameter set.
 
-You do not need to use every single parameter in order to make the command to run. Optional parameters are in square brackets `[]` while mandatory parameters are not. Notice that the parameter set also indicates what kind of input each accept like `System.String` and `Int`.
+You do not need to use every single parameter in order to make the command to run. Optional parameters are in square brackets `[]` while mandatory parameters are not. Additionally, positional parameters are in double square brackets `[[]]`. Notice that the parameter set also indicates what kind of input each accept like `System.String` and `Int`.
+
+#!markdown
+
+# Commands
+
+Powershell is a shell that runs commands. You can run commands by typing them directly into the shell or by running a script. You can also run commands from a script file, which is a file that contains a series of commands. Run a script file by typing the name of the file at the command prompt or by using the `Invoke-Expression` cmdlet.
+
+#!pwsh
+
+Get-Help # running a command
+my_script.ps1 # running a script
+Invoke-Expression # running a command from a string
+
+#!markdown
+
+Let's take a look at full-form syntax of a command and break it down:
+
+`Get-Command -Verb Get -Module PSReadLine,PowerShellGet -Syntax`
+
+- `Get-Command` - The cmdlet name
+- `-Verb Get` - The parameter name and value
+- `-Module PSReadLine,PowerShellGet` - The parameter name and values(comma separated)
+- `-Syntax` - a switch parameter with no value needed
+
+> NOTE: There is a mandatory space after the parameter name and between the parameters value. Nothing here is *case-sensitive*.
 
 #!markdown
 
@@ -131,3 +158,14 @@ All PowerShell commands have a set of common parameters that you can use to cust
 - InformationAction
 - InformationVariable
 - PipelineVariable
+
+#!markdown
+
+## Naming Convention
+
+Before moving forward we need to discuss some terminology. Microsoft has established a naming convention and we should consider following it.
+
+- A *cmdlet(command-let)* is a command that is designed to be used in a pipeline. Cmdlets are the most common type of command in PowerShell and are otherwise known as command-line utility. 
+- A *function* is a block of code that performs a specific task. Functions are used to group a series of commands together to perform a specific task. Functions are also used to create reusable code.
+
+Each cmdlet has a *verb* and a *noun*. The verb describes the action that the cmdlet performs and the noun describes the object that the cmdlet acts on. For example, the `Get-Process` cmdlet gets processes. The verb is `Get` and the noun is `Process`. The verb and noun are separated by a hyphen(`-`).
