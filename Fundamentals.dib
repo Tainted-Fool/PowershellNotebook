@@ -1,6 +1,6 @@
 #!meta
 
-{"kernelInfo":{"defaultKernelName":null,"items":[{"name":"csharp","languageName":"C#","aliases":["c#","cs"]},{"name":"fsharp","languageName":"F#","aliases":["f#","fs"]},{"name":"pwsh","languageName":"PowerShell","aliases":["powershell"]},{"name":"javascript","languageName":"JavaScript","aliases":["js"]},{"name":"html","languageName":"HTML"},{"name":"sql","languageName":"SQL"},{"name":"kql","languageName":"KQL"},{"name":"mermaid","languageName":"Mermaid"},{"name":"httpRequest","languageName":"http"},{"name":"value"}]}}
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":["c#","cs"],"languageName":"C#","name":"csharp"},{"aliases":["f#","fs"],"languageName":"F#","name":"fsharp"},{"aliases":[],"languageName":"HTML","name":"html"},{"aliases":[],"languageName":"http","name":"httpRequest"},{"aliases":["js"],"languageName":"JavaScript","name":"javascript"},{"aliases":[],"languageName":"KQL","name":"kql"},{"aliases":[],"languageName":"Mermaid","name":"mermaid"},{"aliases":["powershell"],"languageName":"PowerShell","name":"pwsh"},{"aliases":[],"languageName":"SQL","name":"sql"},{"aliases":[],"name":"value"}]}}
 
 #!markdown
 
@@ -16,6 +16,9 @@
     - [Interpreting The Help](#interpreting-the-help)
 - [Commands](#commands)
     - [Common Parameters](#common-parameters)
+    - [Naming Convention](#naming-convention)
+- [Providers](#providers)
+- [Pipeline](#pipeline)
 
 #!markdown
 
@@ -79,7 +82,7 @@ Get-Help Write-Host
 
 #!markdown
 
-You can also use wild cards(`*`) and the alias `help` or `man` as a substitute for `Get-Help`. 
+You can also use wildcards(`*` or `?`) and the alias `help` or `man` as a substitute for `Get-Help`. The wildcard `*` matches any number of characters and the wildcard `?` matches any single character.
 
 Add the parameter:
 + `-Full` to get the full help guide
@@ -169,3 +172,61 @@ Before moving forward we need to discuss some terminology. Microsoft has establi
 - A *function* is a block of code that performs a specific task. Functions are used to group a series of commands together to perform a specific task. Functions are also used to create reusable code.
 
 Each cmdlet has a *verb* and a *noun*. The verb describes the action that the cmdlet performs and the noun describes the object that the cmdlet acts on. For example, the `Get-Process` cmdlet gets processes. The verb is `Get` and the noun is `Process`. The verb and noun are separated by a hyphen(`-`).
+
+#!markdown
+
+# Providers
+
+A *provider* or *PSProvider* is a PowerShell component/adapter that enables you to access and manipulate data in a specific data store. Some examples are:
+
+- `FileSystem` provider enables you to access and manipulate files and folders on your computer.
+- `Registry` provider enables you to access and manipulate the Windows registry.
+- `Environment` provider enables you to access and manipulate environment variables.
+- `Variable` provider enables you to access and manipulate variables.
+- `Alias` provider enables you to access and manipulate aliases.
+- `Function` provider enables you to access and manipulate functions.
+- `Help` provider enables you to access and manipulate help topics.
+- `Certificate` provider enables you to access and manipulate certificates. 
+- `WSMan` provider enables you to access and manipulate Windows PowerShell remoting sessions.
+- `PSDrive` provider enables you to access and manipulate PSDrives.
+- `Module` provider enables you to access and manipulate modules.
+- `Script` provider enables you to access and manipulate scripts.
+
+Run `Get-PSProvider` to get a list of all the providers. You can also run `Get-PSProvider -ListAvailable` to get a list of all the providers that are available on your system. Notice that each provider has different capabilities. For example, the `FileSystem` provider has the `Get-ChildItem` cmdlet which is used to get the contents of a folder. The `Registry` provider has the `Get-Item` cmdlet which is used to get the contents of a registry key. Some common capabilities are:
+
+- **ShouldProcess** - Indicates whether the cmdlet supports the `WhatIf` and `Confirm` parameters to test certain actions before committing them.
+- **Filter** - Indicates whether the cmdlet supports the `Filter` parameter to manipulate the output.
+- **Credential** - Indicates whether the cmdlet supports the `Credential` parameter to specify a credential to use when connecting to a remote computer.
+
+#!pwsh
+
+Get-PSProvider
+
+#!markdown
+
+# Pipeline
+
+PowerShell connects commands to each other by using a *pipeline*. A pipeline is a series of commands that are connected by using the pipeline operator or vertical bar `|`. The output of one command is sent to the next command in the pipeline and is displayed on the screen.
+
+#!pwsh
+
+Get-ChildItem | Sort
+#Get-Process | Export-CSV processes.csv
+
+#!markdown
+
+We can also pipe to a file using the `Out-File` cmdlet or by using the redirection operator `>`.
+
+#!pwsh
+
+Dir > my_dir.txt
+#Dir | Out-File my_dir.txt # is the same
+
+#!markdown
+
+Connecting more and more commands allows you to have increasingly powerful command lines. Each command handles a single set in the process and the entire command line as a whole accomplishes a useful task.
+
+#!pwsh
+
+#Get-Process | Stop-Process -Confirm # DO NOT RUN THIS COMMAND
+Get-Process | Stop-Process -WhatIf # Preview what would happen if ran
